@@ -116,12 +116,12 @@ Code implementation is discribed in the jupyter notebook and is structured as fo
 
 The DQN agent uses the following parameters values:
 
-- BUFFER_SIZE = int(1e6)  = replay buffer size
-- BATCH_SIZE = 128        = minibatch size
-- GAMMA = 0.99            = discount factor
-- TAU = 1e-3              = for soft update of target parameters
-- LR = 1e-4               = learning rate 
-- UPDATE_EVERY = 3        = how often to update the network
+- BUFFER_SIZE = int(1e6)  # replay buffer size
+- BATCH_SIZE = 128        # minibatch size
+- GAMMA = 0.99            # discount factor
+- TAU = 1e-3              # for soft update of target parameters
+- LR = 1e-4               # learning rate 
+- UPDATE_EVERY = 3        # how often to update the network
 
 - DoubleDQN = True        = Use Double DQN
 - DuelingDQN = True       = Use Dueling DQN
@@ -134,12 +134,12 @@ PRIORITIZED EXPERIENCE REPLAY PARAMETERS:
 - BETA_DELTA = 0.0004     = importance sampling weight  -  change of beta at each step
 
 EXPLORATION/EXPLOTATION PARAMETERS (EPSILON_GREEDY):
-- eps_start = 0.5         = starting value
-- eps_end = 0.01          = minimum value
-- eps_decay = 0.87        = multiplicative factor for decreasing
+- eps_start = 0.5         # starting value
+- eps_end = 0.01          # minimum value
+- eps_decay = 0.87        # multiplicative factor for decreasing
 
-- n_episodes = 2000       = number of episods
-- max_t=10000             = length of episod
+- n_episodes = 2000       # number of episods
+- max_t=10000             # length of episod
 
 OPTIMIZER               = ADAM
 
