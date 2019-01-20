@@ -15,7 +15,7 @@ If you have already installed all the necessary dependencies for the **navigatio
 2. Install all necessary dependencies
 3. Launch the Jupyter notebook: `jupyter notebook`
 4. Change Kernel to `drlnd`
-5. Select `Navigation_PER_Duelling_DDQN_V01.ipynb`
+5. Select `./results/Navigation_PER_Duelling_DDQN_V01.ipynb`
 6. Follow the instructions in the notebook or execute the code cells you are interested in.
  
 Note that cells may depend on previous cells. The notebook explains clearly what each code cell does.

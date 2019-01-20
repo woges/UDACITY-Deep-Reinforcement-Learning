@@ -72,7 +72,7 @@ Several improvements to the natural Deep Q-Learning algorithme have been suggest
 
 ### Code Implementation
 
-Code implementation is discribed in the jupyter notebook and is structured as follows:
+Code implementation is discribed in the [jupyter notebook](./results/Navigation_PER_Dueling_DDQN_V01.ipynb) and is structured as follows:
 
 - **Import of all necessary packages**
 - **Neural Network - class QNetwork**
@@ -145,7 +145,7 @@ TRAINING:
 
 ### Results
 
-The agent is able to receive an average reward (over 100 episodes) of at least +13 in episodes as shown in the following chart.  
+The agent is able to receive an average reward (over 100 episodes) of at least +13 in only 123 episodes as shown in the following chart.  
 
 ![Result](./img/performance_banana_PER_Duelling_DDQN_V02.jpg)
 
