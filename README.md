@@ -16,25 +16,10 @@ In this repository I will share the **source code** of all the projects of **[Ud
 
 ----  
 
-| [Getting Started for Part 2](./Part2_How_to_get_started)       | [![Part2P1](./Part2_Project_Navigation/img/Trained_agent_banana_env_PER_Dueling_DDQN_V01.gif)](./Part2_Project_Navigation/results/white.webm)<br>**Project 1:<br>Navigation**<br>[Code](./Part2_Project_Navigation)       | ![T1P2](./Part3_Project/img/Header_DRL.JPG)<br>**Project 2:<br>Project 2**<br>[Code](./Part3_Project)       |
+| [Getting Started for Part 2](./Part2_How_to_get_started)       | [![Part2P1](./Part2_Project_Navigation/img/Trained_agent_banana_env_PER_Dueling_DDQN_V01.gif)](./Part2_Project_Navigation/results/white.webm)<br>**Project 1:<br>Navigation**<br>[Code](./Part2_Project_Navigation)       |        |
 | :---:         |     :---:      |          :---: |
 
 ---  
-
-### _Introduction_  
-xxx  
-
-
-#### [P1 - Navigation](./term1_project1_lane_finding)
- - **Summary:** yyy
- - **Keywords:** Python, DQN
- 
-#### **Deep Reinforcement Learning**      
-  
-
-
-
-
 
 ## Contributing
 
