@@ -41,3 +41,7 @@ To start Jupyter in your browser, use terminal to navigate to your project direc
 `> jupyter notebook`
 
 A browser window will appear showing the contents of the current directory.  Click on the file called "xxx.ipynb".  Another browser window will appear displaying the notebook. Dont't forget to change the kernel to match the drlnd environment by using the drop-down `Kernel` menu before running code in a notebook.
+
+### Project Navigation
+
+[Project Navigation](../Part2_Project_Navigation).

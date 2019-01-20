@@ -1,5 +1,5 @@
 # Project 1: Navigation
-![Part2_Project_Navigation](./img/Trained_agent_banana_env_PER_Duelling_DDQN_V01.gif)
+![Part2_Project_Navigation](./img/Trained_agent_banana_env_PER_Dueling_DDQN_V01.gif)
 
 ## Overview
 
@@ -57,6 +57,10 @@ So as a result we get:
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of the agent is to collect as many yellow bananas as possible while avoiding blue bananas. 
 
 The task is episodic, and in order to solve the environment, the agent must get an average score of +13 over 100 consecutive episodes.
+
+### Results
+
+See [Report.md](report.md) for more details.
 
 ## Literature
 
