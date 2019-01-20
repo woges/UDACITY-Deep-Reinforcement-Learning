@@ -124,18 +124,18 @@ PARAMETER VALUES:
 - UPDATE_EVERY = 3        # how often to update the network 
 - DoubleDQN = True        # Use Double DQN
 - DuelingDQN = True       # Use Dueling DQN
-- Exp_replay_DQN = True   # Use priotized experience replay
+- Exp_replay_DQN = True   # Use priotized experience replay  
 
 PRIORITIZED EXPERIENCE REPLAY PARAMETERS:
 - MIN_P = 0.001           # value added to the TD errors when updating priorities
 - ALPHA_ = 0.57           # how much prioritization is used (0 - no prioritization, 1 - full prioritization)
 - BETA_START = 0.0001     # importance sampling weight - degree for use (0 - no correction, 1 - full correction), starting value
-- BETA_DELTA = 0.0004     # importance sampling weight  -  change of beta at each step 
+- BETA_DELTA = 0.0004     # importance sampling weight  -  change of beta at each step  
 
 EXPLORATION/EXPLOTATION PARAMETERS (EPSILON_GREEDY):
 - eps_start = 0.5         # starting value
 - eps_end = 0.01          # minimum value
-- eps_decay = 0.87        # multiplicative factor for decreasing 
+- eps_decay = 0.87        # multiplicative factor for decreasing  
 
 TRAINING:
 - n_episodes = 2000       # number of episods
