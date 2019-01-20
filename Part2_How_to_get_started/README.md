@@ -27,7 +27,7 @@ Then, place the file in the `p1_navigation/` folder in the DRLND GitHub reposito
 
 ### **Step 3**: Explore the Environment
 
-After you have followed the instructions above, open Navigation.ipynb (located in the p1_navigation/ folder in the DRLND GitHub repository) and follow the instructions to learn how to use the Python API to control the agent.
+After you have followed the instructions above, open `Navigation.ipynb` (located in the `p1_navigation/` folder in the DRLND GitHub repository) and follow the instructions to learn how to use the Python API to control the agent.
 
 
 ### **Jupyter Notebook**
