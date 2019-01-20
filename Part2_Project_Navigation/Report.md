@@ -15,7 +15,7 @@ With Deeo Reinforcement Learning this agent is using nonlinear function approxim
 
 Unfortunately, reinforcement learning is notoriously unstable when neural networks are used to represent the action values. Therefore we should use **two key** features to overcome with this and enable RL agents to converge, more reliably during training:
 
-- Experience Replay 
+- **Experience Replay**
     => use of a rolling history of the past data via replay pool. The act of sampling a small batch of tuples form the replay buffer in oder to learn is known as **experience replay**. Advantages:
     - the behavior distribution is averaged over many of its previous states
     - smoothing out learning and
@@ -24,7 +24,7 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
     - more efficient use of observed experiences
     - breaks up the potentially highly correlated sequence of experienced tupels
 
-- Fixed Q-Targets 
+- **Fixed Q-Targets**
     => use of a target network to represent the old Q-function, which will be used to compute the loss of every action during training
     -  otherwise as the Q-functions values change at each step of training the value estimates can easily spiral out of control
     -  To use the fixed Q-Targets technique, you need a second set of parameters w- which you can initialize to w. 
@@ -32,14 +32,15 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
 ![Fixed Q-Targets](./img/Fixed_Q_Targets.png)
 
 **Pyeudo Code for Deep Q-Learning Algorithm**
-[Deep Q-Learning Algorithm](./img/Deep_Q_Learning_Algorithm.png)
+![Deep Q-Learning Algorithm](./img/Deep_Q_Learning_Algorithm.png)
 
 This project implements a Value Based method called [Deep Q-Networks](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
 
-#### Enhancements
+### Enhancements
+
 Several improvements to the natural Deep Q-Learning algorithme have been suggested. Three of them are implemented in the algorithm used here:
 
-- Double DQN
+- **Double DQN**
     + addresses the problem of overestimation of action values that Q-learning is prone to. Reason for that:
     + in the beginning Q-values are still evolving
     + the accuracy of our Q-values depends a lot on what actions have been tried
@@ -51,7 +52,7 @@ Several improvements to the natural Deep Q-Learning algorithme have been suggest
 
 ![Double DQN](./img/Double_DQNs.JPG)
 
-- Prioritized Experience Replay
+- **Prioritized Experience Replay**
     + some of the experiences stored in the replay buffer may be more important for learning than others
     + these important experiences might even occur infrequently
     + sampling the batches uniformly, these experiences have a very small chance of getting selected
@@ -61,7 +62,7 @@ Several improvements to the natural Deep Q-Learning algorithme have been suggest
     
 ![Prioritized Experience Replay](./img/Prioritized_experience_Replay.JPG)
 
-- Dueling DQN
+- **Dueling DQN**
     + intuition behind this is that the value of most states donn't vary a lot across actions. So the core idea is to use two different streams:
         * one that estimates the state value function
         * one that estimates the advantage for each action. 
@@ -73,43 +74,42 @@ Several improvements to the natural Deep Q-Learning algorithme have been suggest
 
 Code implementation is discribed in the jupyter notebook and is structured as follows:
 
-- Import of all necessary packages
-- Neural Network - class QNetwork
+- **Import of all necessary packages**
+- **Neural Network - class QNetwork**
     + will be trained to predict the action to perform depending on the observed states
     + regular fully connected Deep Neural Network using the PyTorch Framework
         ![Dueling DQN_](./img/Normal_NN.JPG)
-- Dueling Network - class duelingQNetwork
+- **Dueling Network - class duelingQNetwork**
     + will be trained to predict the action to perform depending on the observed states
     + regular fully connected Deep Neural Network with two branches using the PyTorch Framework
         ![Dueling DQN_](./img/Dueling_NN.JPG)
-- DQN Agent - class Agent
-        + a dqn agent with dueling network, prioritized experience replay and double DQN is defined:
-            * constructor:
-                - initializes the memory buffer
-                - initializes the neural network
-                - initializes the optimizer
-            * step()
-                - adds tupels (state, action, reward, next_state, done) to memory
-                - starts learning step at each UPDATE_EVERY step
-            * act()
-                - returns actions for given state as per current policy (epsilon greedy)
-            * learn()
-                - updates value parameters using given batch of prioritized experience tuples
-            * soft_update() 
-                - softly updates the weights from the local model to the target model as part of the Fixed Q-Targets technique
-            
-        - class Prio_ReplayBuffer
-            + fixed-size buffer to store experience tuples (state, action, reward, next_state, done)
-                * add() 
-                    - adds an experienced tupel to the memory
-                    - connects a starting priority to the tupel - getting updated in the next learning step
-                * sample() 
-                    - samples a batch of experienced tupels accordings to the probability distribution
-                * update_TD_deltas()
-                    - updates the priorities according to the learning step
-                * new_beta()
-                    - calculates a new beta value for calculating importance weights
-- dqn - modul
+- **DQN Agent - class Agent**
+    + a dqn agent with dueling network, prioritized experience replay and double DQN is defined:
+        * constructor:
+            - initializes the memory buffer
+            - initializes the neural network
+            - initializes the optimizer
+        * step()
+            - adds tupels (state, action, reward, next_state, done) to memory
+            - starts learning step at each UPDATE_EVERY step
+        * act()
+            - returns actions for given state as per current policy (epsilon greedy)
+        * learn()
+            - updates value parameters using given batch of prioritized experience tuples
+        * soft_update()
+            - softly updates the weights from the local model to the target model as part of the Fixed Q-Targets technique
+- **DQN Agent - class Prio_ReplayBuffer**
+    + fixed-size buffer to store experience tuples (state, action, reward, next_state, done)
+        * add() 
+            - adds an experienced tupel to the memory
+            - connects a starting priority to the tupel - updated in the next learning step
+        * sample() 
+            - samples a batch of experienced tupels accordings to the probability distribution
+        * update_TD_deltas()
+            - updates the priorities according to the learning step
+        * new_beta()
+            - calculates a new beta value for calculating importance weights
+- **dqn - modul**
     + trains an agent using DQN and returns the scores
 
 ### Training and Hyperparameter
@@ -127,7 +127,7 @@ DoubleDQN = True        # Use Double DQN
 DuelingDQN = True       # Use Dueling DQN
 Exp_replay_DQN = True   # Use priotized experience replay
 
-PRIORITIZED EXPERIENCE REPLAY PARAMETERS: 
+PRIORITIZED EXPERIENCE REPLAY PARAMETERS:
 MIN_P = 0.001           # value added to the TD errors when updating priorities
 ALPHA_ = 0.57           # how much prioritization is used (0 - no prioritization, 1 - full prioritization)
 BETA_START = 0.0001     # importance sampling weight - degree for use (0 - no correction, 1 - full correction), starting value
