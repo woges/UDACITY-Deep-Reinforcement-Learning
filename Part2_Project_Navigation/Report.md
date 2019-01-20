@@ -147,7 +147,7 @@ TRAINING:
 
 The agent is able to receive an average reward (over 100 episodes) of at least +13 in only 123 episodes as shown in the following chart.  
 
-![Result](./img/performance_banana_PER_Duelling_DDQN_V02.jpg)
+![Result](./results/performance_banana_PER_Duelling_DDQN_V02.jpg)
 
 ### Future Ideas for improving the agent's performance
 

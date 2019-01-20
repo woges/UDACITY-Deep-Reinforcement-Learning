@@ -60,7 +60,7 @@ The task is episodic, and in order to solve the environment, the agent must get 
 
 ### Results
 
-See [Report.md](./report.md) for more details.
+See [Report.md](./Report.md) for more details.
 
 ## Literature
 
