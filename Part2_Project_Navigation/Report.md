@@ -115,7 +115,6 @@ Code implementation is discribed in the jupyter notebook and is structured as fo
 ### Training and Hyperparameter
 
 The DQN agent uses the following parameters values:
-
 - BUFFER_SIZE = int(1e6)  # replay buffer size
 - BATCH_SIZE = 128        # minibatch size
 - GAMMA = 0.99            # discount factor
@@ -134,9 +133,10 @@ PRIORITIZED EXPERIENCE REPLAY PARAMETERS:
 - BETA_DELTA = 0.0004     = importance sampling weight  -  change of beta at each step
 
 EXPLORATION/EXPLOTATION PARAMETERS (EPSILON_GREEDY):
-- eps_start = 0.5         # starting value
-- eps_end = 0.01          # minimum value
+- eps_start = 0.5         # starting value 
+- eps_end = 0.01          # minimum value 
 - eps_decay = 0.87        # multiplicative factor for decreasing
+
 
 - n_episodes = 2000       # number of episods
 - max_t=10000             # length of episod
