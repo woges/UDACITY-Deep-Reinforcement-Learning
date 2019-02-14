@@ -53,4 +53,4 @@ A browser window will appear showing the contents of the current directory.  Cli
 
 ### Project Continuous Control
 
-[Project Continuous Control](../Part3_Project_Continuous_Control).
+[Project Continuous Control](../Part3_Project_Continous_Control/).
