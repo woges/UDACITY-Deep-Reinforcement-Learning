@@ -41,7 +41,8 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
 
 This project implements a Policy Based method called [DDPG](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf).
 
-### Training and Hyperparameter
+
+## Training and Hyperparameter
 
 The DDPG agent uses the following 
 PARAMETER VALUES:
@@ -82,17 +83,17 @@ TRAINING:
 - BATCH_NORMAL = True       # Enable batch normalization
 
 
-### Results
+## Results
 
 The agent is able to receive an average reward (over 100 episodes) of at least +30 in only 22 episodes as shown in the following chart.  
 
-![Result](./results/DDPG_trained_performance.jpg)
+![Result](./results/DDPG_trained_performance.png)
 
-#### Untrained agent performing random actions
+### Untrained agent performing random actions
 
 ![Part3_Project_Continuous_Control](./img/Continuous_Control_random_action.gif)
 
-#### Trained agent performing appropriate actions
+### Trained agent performing appropriate actions
 
 ![Part3_Project_Continuous_Control](./img/Continuous_Control_trained_agent_action.gif)
 
@@ -109,6 +110,7 @@ A minor task could be an in deep tuning of the hyperparameters with a grid searc
 [TRPO](https://arxiv.org/abs/1604.06778)
 
 [PPO](https://arxiv.org/pdf/1707.06347.pdf)
+
 [PPO@openai.com](https://blog.openai.com/openai-baselines-ppo/)
 
 [D4PG](https://openreview.net/forum?id=SyZipzbCb)
