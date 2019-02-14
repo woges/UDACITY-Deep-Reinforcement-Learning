@@ -67,7 +67,7 @@ See [Report.md](./Report.md) for more details.
 
 ## Literature
 
-[DDPG](./resources/'305_20160229_Lillicrap_et_al_Continuous control with DRL.pdf')
+[DDPG](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf)
 
 ## Contributing
 
