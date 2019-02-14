@@ -21,6 +21,13 @@ In this repository I will share the **source code** of all the projects of **[Ud
 
 ---  
 
+### Part 3: Policy Based Methods
+
+----  
+
+| [Getting Started for Part 3](./Part3_How_to_get_started)       | [![Part3P1](./Part3_Project_Continous_Control/img/Continuous_Control_trained_agent_action.gif)](./Part2_Project_Navigation/results/white.webm)<br>**Project 2:<br>Continuous Control**<br>[Code](./Part3_Project_Continous_Control)       |        |
+| :---:         |     :---:      |          :---: |
+
 ## Contributing
 
 No further updates nor contributions are requested.  This project is static.
