@@ -1,17 +1,22 @@
-# Project 1: Navigation
-![Part2_Project_Navigation](./img/Trained_agent_banana_env_PER_Dueling_DDQN_V01.gif)
+# Project 3: Continuous Control
+
 
 ## Goal of this project
 
-In this project an agent is set up and trained to navigate and collect yellow bananas in a large square world. The goal of this project is to design, train and evaluate an agent that collects as many yellow bananas as possible in a large square world while avoiding to pick up blue bananas. Therefore a deep reinforcement algorithm has to be implemented. Here an angent with an Deep Q-Learning (DQN) algorithm and several additional improvements like Double DQN (DDQN), Dueling Neural Architecture and DQN with prioritized experience replay is implemented.
+The goal of this project is to design, train and evaluate an agent that moves a double-jointed arm to target locations. A reward of +0.1 is provided for each step that the agent's hand is in the goal location. Thus, the goal of your agent is to maintain its position at the target location for as many time steps as possible.
+
+Therefore a deep reinforcement algorithm has to be implemented. Here an angent with an Deep Deterministic Policy Gradient (DDPG) algorithm and several additional improvements for getting a more stabilized learning is implemented:
+
+-   Replay buffer
+-   Target Q network with soft target updates
+-   Batch normalization
+-   Noise added, so we can treat the problem of exploration independent form the learning algorithm (Ornstein-Uhlenbeck process)
 
 ## Description of the implementation
 
 ### Learning algorithm
 
-Reinforcement Learning is described in terms of an agent interacting with a previsouly unknown environment while trying to maximize the overall or total reward. The agent outputs an action and the environment returns an observation or the state of the system and a reward. In order to fullfil its goal to maximize the total reward the agent has to choose the best action to take. 
-
-With Deeo Reinforcement Learning this agent is using nonlinear function approximators to calculate the value actions based directly on observation from the environment. We represented it as a Deep Neural Network. We then use Deep Learning to find the optimal parameters for these function approximators. 
+This project implements an off-policy method called Deep Deterministic Policy Gradient and described in the paper [Continuous control with deep reinforcement learning](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf). Deep Deterministic Policy Gradient (DDPG) is an algorithm which concurrently learns a Q-function and a policy. It uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy.
 
 Unfortunately, reinforcement learning is notoriously unstable when neural networks are used to represent the action values. Therefore we should use **two key** features to overcome with this and enable RL agents to converge, more reliably during training:
 
@@ -31,151 +36,84 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
 
 ![Fixed Q-Targets](./img/Fixed_Q_Targets.png)
 
-**Pyeudo Code for Deep Q-Learning Algorithm**
-![Deep Q-Learning Algorithm](./img/Deep_Q_Learning_Algorithm.png)
+**Pyeudo Code for Deep Deterministic Policy Gradient (DDPG) algorithm**
+![Deep Deterministic Policy Gradient (DDPG) algorithm](./img/DDPG.png)
 
-This project implements a Value Based method called [Deep Q-Networks](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
-
-### Enhancements
-
-Several improvements to the natural Deep Q-Learning algorithme have been suggested. Three of them are implemented in the algorithm used here:
-
-- **Double DQN**
-    + addresses the problem of overestimation of action values that Q-learning is prone to. Reason for that:
-    + in the beginning Q-values are still evolving
-    + the accuracy of our Q-values depends a lot on what actions have been tried
-    + algorithm always picks the maximum among a set of noisy numbers
-    + solution:
-        * we select the best action using one set of parameters w
-        * but evaluate it using a different set of parameters w'
-    That's like having two separate function approximators that must agree on the best action.
-
-![Double DQN](./img/Double_DQNs.JPG)
-
-- **Prioritized Experience Replay**
-    + some of the experiences stored in the replay buffer may be more important for learning than others
-    + these important experiences might even occur infrequently
-    + sampling the batches uniformly, these experiences have a very small chance of getting selected
-    + since buffers are limited in capacity, older important experiences may get lost
-    + solution:
-        * assign priorities to each tupel (e.g. use TD error delta. The bigger the error, the more we expect to learn from that tupel.)
-    
-![Prioritized Experience Replay](./img/Prioritized_experience_Replay.JPG)
-
-- **Dueling DQN**
-    + intuition behind this is that the value of most states donn't vary a lot across actions. So the core idea is to use two different streams:
-        * one that estimates the state value function
-        * one that estimates the advantage for each action. 
-
-![Dueling DQN](./img/Dueling_NNs.JPG)
-
-
-### Code Implementation
-
-Code implementation is discribed in the [jupyter notebook](./results/Navigation_PER_Dueling_DDQN_V01.ipynb) and is structured as follows:
-
-- **Import of all necessary packages**
-- **Neural Network - class QNetwork**
-    + will be trained to predict the action to perform depending on the observed states
-    + regular fully connected Deep Neural Network using the PyTorch Framework
-        ![Dueling DQN_](./img/Normal_NN.JPG)
-- **Dueling Network - class duelingQNetwork**
-    + will be trained to predict the action to perform depending on the observed states
-    + regular fully connected Deep Neural Network with two branches using the PyTorch Framework
-        ![Dueling DQN_](./img/Dueling_NN.JPG)
-- **DQN Agent - class Agent**
-    + a dqn agent with dueling network, prioritized experience replay and double DQN is defined:
-        * constructor:
-            - initializes the memory buffer
-            - initializes the neural network
-            - initializes the optimizer
-        * step()
-            - adds tupels (state, action, reward, next_state, done) to memory
-            - starts learning step at each UPDATE_EVERY step
-        * act()
-            - returns actions for given state as per current policy (epsilon greedy)
-        * learn()
-            - updates value parameters using given batch of prioritized experience tuples
-        * soft_update()
-            - softly updates the weights from the local model to the target model as part of the Fixed Q-Targets technique
-- **DQN Agent - class Prio_ReplayBuffer**
-    + fixed-size buffer to store experience tuples (state, action, reward, next_state, done)
-        * add() 
-            - adds an experienced tupel to the memory
-            - connects a starting priority to the tupel - updated in the next learning step
-        * sample() 
-            - samples a batch of experienced tupels accordings to the probability distribution
-        * update_TD_deltas()
-            - updates the priorities according to the learning step
-        * new_beta()
-            - calculates a new beta value for calculating importance weights
-- **dqn - modul**
-    + trains an agent using DQN and returns the scores
+This project implements a Policy Based method called [DDPG](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf).
 
 ### Training and Hyperparameter
 
-The DQN agent uses the following 
+The DDPG agent uses the following 
 PARAMETER VALUES:
-- BUFFER_SIZE = int(1e6)  # replay buffer size
-- BATCH_SIZE = 128        # minibatch size
-- GAMMA = 0.99            # discount factor
-- TAU = 1e-3              # for soft update of target parameters
-- LR = 1e-4               # learning rate
-- UPDATE_EVERY = 3        # how often to update the network 
-- DoubleDQN = True        # Use Double DQN
-- DuelingDQN = True       # Use Dueling DQN
-- Exp_replay_DQN = True   # Use priotized experience replay  
+- BUFFER_SIZE = int(1e5)    # replay buffer size
+- BATCH_SIZE = 128          # minibatch size
+- RANDOM_SEED = 1           # ramdom seed
+- GAMMA = 0.99              # discount factor
+- TAU = 1e-3                # for soft update of target parameters
+- LR_ACTOR = 1e-4           # learning rate of the actor
+- LR_CRITIC = 1e-3          # learning rate of the critic
+- WEIGHT_DECAY = 0          # L2 weight decay
+- NUM_AGENTS = 20           # Number of agents
+- LEARN_EVERY = 10          # Learn every x time steps
+- LEARN_UPDATES = 8         # Number of learning steps 
+
+MODEL: 
+- A_FC1_UNITS = 256         # Actor: Number of nodes in first hidden layer
+- A_FC2_UNITS = 128         # Actor: Number of nodes in second hidden layer
+- C_FCS1_UNITS = 256        # Critic: Number of nodes in first hidden layer
+- C_FC2_UNITS = 128         # Critic: Number of nodes in second hidden layer
+- OPTIMIZER = ADAM 
+
+NOISE PARAMETERS:
+- OUNOISE_Theta = 0.15      # Theata for Ornstein-Uhlenbeck process
+- OUNOISE_SIGMA = 0.2       # Sigma for Ornstein-Uhlenbeck process
+- OUNOISE_MU = 0.           # Mue for Ornstein-Uhlenbeck process
 
 PRIORITIZED EXPERIENCE REPLAY PARAMETERS:
-- MIN_P = 0.001           # value added to the TD errors when updating priorities
-- ALPHA_ = 0.57           # how much prioritization is used (0 - no prioritization, 1 - full prioritization)
-- BETA_START = 0.0001     # importance sampling weight - degree for use (0 - no correction, 1 - full correction), starting value
-- BETA_DELTA = 0.0004     # importance sampling weight  -  change of beta at each step  
-
-EXPLORATION/EXPLOTATION PARAMETERS (EPSILON_GREEDY):
-- eps_start = 0.5         # starting value
-- eps_end = 0.01          # minimum value
-- eps_decay = 0.87        # multiplicative factor for decreasing  
+- PRIO_REPLAY_DDPG = True   # Use priotized experience replay
+- MIN_P = 0.001             # value added to the TD errors when updating priorities
+- ALPHA_ = 0.57             # how much prioritization is used (0 - no prioritization, 1 - full prioritization)
+- BETA_START = 0.0001       # importance sampling weight - degree for use (0 - no correction, 1 - full correction), starting value
+- BETA_DELTA = 0.0004       # importance sampling weight  -  change of beta at each step  
 
 TRAINING:
-- n_episodes = 2000       # number of episods
-- max_t = 10000             # length of episod
-- OPTIMIZER = ADAM 
+- N_EPISODES = 300          # Number of episodes
+- MAX_T = 1000              # Max length of one episode
+- BATCH_NORMAL = True       # Enable batch normalization
 
 
 ### Results
 
-The agent is able to receive an average reward (over 100 episodes) of at least +13 in only 123 episodes as shown in the following chart.  
+The agent is able to receive an average reward (over 100 episodes) of at least +30 in only 22 episodes as shown in the following chart.  
 
-![Result](./results/performance_banana_PER_Duelling_DDQN_V02.jpg)
+![Result](./results/DDPG_trained_performance.jpg)
+
+#### Untrained agent performing random actions
+
+![Part3_Project_Continuous_Control](./img/Continuous_Control_random_action.gif)
+
+#### Trained agent performing appropriate actions
+
+![Part3_Project_Continuous_Control](./img/Continuous_Control_trained_agent_action.gif)
 
 ### Future Ideas for improving the agent's performance
 
-There are some other possible extensions to the DQN algorithm which are worth to give them a shot. For example:
-
-- Learning from multi-step bootstrap targets
-- Distributional DQN
-- Noisy DQN
-
-Researchers at Google DeepMind recently tested the performance of an agent that incorporated all six of these modifications. The corresponding algorithm was termed Rainbow.
-
-A further step to this project would be to train the agent directly form the environment's observed raw pixels (84x84) instead of using the environment's internal states (37 states). To make use of these images the neural network has to be changed from a fully connected layer structure to a convolutional neural network, which can process the raw pixels.
+There are some further methods that will be more stable with the project. Better performance is promised by the use of Trust Region Policy Optimization (TRPO) or Truncated Natural Policy Gradient (TNPG) as proposed in this [publication](https://arxiv.org/abs/1604.06778). 
+Other algorithms like the Proximal Policy Optimization ([PPO](https://arxiv.org/pdf/1707.06347.pdf)), [A3C](https://arxiv.org/pdf/1602.01783.pdf) or [D4PG](https://openreview.net/forum?id=SyZipzbCb) have also demonstrated good performance with continuous control tasks.
+A minor task could be an in deep tuning of the hyperparameters with a grid search method or the use of an other noise process for exploration.
 
 ## Literature
 
-[Double DQN (DDQN)](./rersources/203_20151208_vHasselt_et_al_DRL_with_Double_Q-learning_1509.06461.pdf)
+[DDPG](https://arxiv.org/abs/1509.02971)
 
-[Prioritized experience replay](./rersources/203_20160225_Schaul_et_al_Prioritized_Experience_Replay_1511.05952.pdf)
+[TRPO](https://arxiv.org/abs/1604.06778)
 
-[Dueling DQN](./rersources/203_20160405_Wang_et_al_Dueling_Network_Architectures_4DRL_1511.06581.pdf)
+[PPO](https://arxiv.org/pdf/1707.06347.pdf)
+[PPO@openai.com](https://blog.openai.com/openai-baselines-ppo/)
 
-[Multi-step bootstrap targets](./rersources/203_20160616_Mnih_el_at_Asynchronous_Methods_f_DRL_1602.01783.pdf)
+[D4PG](https://openreview.net/forum?id=SyZipzbCb)
 
-[Distributional DQN](./rersources/203_20170721_Bellemare_et_al_A_Distributional_Perspective_on_RL_1707.06887.pdf)
-
-[Noisy DQN](./rersources/203_20180215_Fortunato_et_al_Noisy_Networks_f_Exploration_1706.10295.pdf)
-
-[Rainbow Algorithm](./rersources/203_20171006_Hessel_et_al_Rainbow_Combining_Imporvments_in_DRL_1710.02298.pdf)
+[A3C](https://arxiv.org/pdf/1602.01783.pdf)
 
 ## Contributing
 
@@ -183,4 +121,4 @@ No further updates nor contributions are requested.  This project is static.
 
 ## License
 
-Part2_Project_Navigation results are released under the [MIT License](./LICENSE)
+Part3_Project_Continuous_Control results are released under the [MIT License](./LICENSE)
