@@ -26,10 +26,10 @@ The goal of this project is to design, train and evaluate an agent that moves a 
 
 Therefore a deep reinforcement algorithm has to be implemented. Here an angent with an Deep Deterministic Policy Gradient (DDPG) algorithm and several additional improvements for getting a more stabilized learning is implemented:
 
-•   Replay buffer
-•   Target Q network with soft target updates
-•   Batch normalization
-•   Noise added, so we can treat the problem of exploration independent form the learning algorithm (Ornstein-Uhlenbeck process)
+-   Replay buffer
+-   Target Q network with soft target updates
+-   Batch normalization
+-   Noise added, so we can treat the problem of exploration independent form the learning algorithm (Ornstein-Uhlenbeck process)
 
 ## Project Environment Details 
 
@@ -67,7 +67,7 @@ See [Report.md](./Report.md) for more details.
 
 ## Literature
 
-[DDPG](./resources/305_20160229_Lillicrap_et_al_Continuous control with DRL.pdf)
+[DDPG](./resources/'305_20160229_Lillicrap_et_al_Continuous control with DRL.pdf')
 
 ## Contributing
 
