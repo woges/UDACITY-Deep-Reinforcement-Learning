@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# files
+/Part3_Project_Continous_Control/img/Continuous_Control_trained_agent_action_resized.gif
