@@ -1,6 +1,6 @@
 # Udacity Deep Reinforcement Learning Nanodegree 
 
-![DRL](./Part3_Project/img/Header_DRL.JPG)  
+![DRL](./Part3_Project_Continous_Control/img/Header_DRL.JPG)  
 Image: Udacity Deep Reinforcement Learning Nanodegree  
 
 In this repository I will share the **source code** of all the projects of **[Udacity Deep Reinforcement Learning Nanodegree](https://eu.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893)**.  
