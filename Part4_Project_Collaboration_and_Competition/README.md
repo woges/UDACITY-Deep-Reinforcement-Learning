@@ -54,8 +54,6 @@ The project environment is similar to, but not identical to the tennis environme
     - action space: (continuous) size of 2, 
         - corresponding to movement toward or away from the net
         - jumping
-- Task: episodic
-- Solved: averaged reward: +0.5 (average over 100 episodes, after taking the maximum over both agents)
 
 Thus, the goal of the agents is to maintain the ball in play for as many time steps as possible. The task is episodic, and in order to solve the environment:
 - the agent must get an average score of 0.5 over 100 consecutive episodes, after taking the maximum over both agents.
