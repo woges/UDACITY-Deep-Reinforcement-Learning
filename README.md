@@ -28,6 +28,17 @@ In this repository I will share the **source code** of all the projects of **[Ud
 | [Getting Started for Part 3](./Part3_How_to_get_started)       | [![Part3P1](./Part3_Project_Continous_Control/img/Continuous_Control_trained_action.gif)](./Part3_Project_Continous_Control/)<br>**Project 3:<br>Continuous Control**<br>[Code](./Part3_Project_Continous_Control/)       |        |
 | :---:         |     :---:      |          :---: |
 
+---  
+
+### Part 3: Multi Agent Reinforcement Learning
+
+----  
+
+| [Getting Started for Part 4](./Part4_How_to_get_started)       | [![Part4P1](./Part4_Project_Collaboration_and_Competition/img/Collaboration_and_Competition_Tennis_trained.gif)](./Part4_Project_Collaboration_and_Competition/)<br>**Project 4:<br>Collaboration and Competition**<br>[Code](./Part4_Project_Collaboration_and_Competition/)       |        |
+| :---:         |     :---:      |          :---: |
+
+---  
+
 ## Contributing
 
 No further updates nor contributions are requested.  This project is static.
