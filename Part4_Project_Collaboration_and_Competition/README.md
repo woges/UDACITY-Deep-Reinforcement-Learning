@@ -1,5 +1,5 @@
 # Project 4: Collaboration and Competition
-![Part4_Project_Collaboration_and_Competition](./img/Collaboration_and_Competition_Tennis_trained.gif)
+![Part4_Project_Collaboration_and_Competition](./img/MADDPG_tennis_score_0p5.gif)
 
 ## Overview
 
