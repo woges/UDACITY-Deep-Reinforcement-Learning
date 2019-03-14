@@ -3,9 +3,9 @@
 
 ## Goal of this project
 
-The goal of this project is to design, train and evaluate two agents that moves a double-jointed arm to target locations. A reward of +0.1 is provided for each step that the agent's hand is in the goal location. Thus, the goal of your agent is to maintain its position at the target location for as many time steps as possible.
+The goal of this project is to design, train and evaluate two agents so that they can bounce a ball over a net as often as possible. If an agent hits the ball over the net, it receives a reward of +0.1. If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01. Thus, the goal of each agent is to keep the ball in play.
 
-Therefore a deep reinforcement algorithm has to be implemented. Here an angent with an Deep Deterministic Policy Gradient (DDPG) algorithm and several additional improvements for getting a more stabilized learning is implemented:
+Therefore a deep reinforcement algorithm has to be implemented. Here an multi agent concept with an Deep Deterministic Policy Gradient (DDPG) algorithm and several additional improvements for getting a more stabilized learning is implemented:
 
 -   Replay buffer
 -   Target Q network with soft target updates
@@ -16,7 +16,7 @@ Therefore a deep reinforcement algorithm has to be implemented. Here an angent w
 
 ### Learning algorithm
 
-This project implements an off-policy method called Deep Deterministic Policy Gradient and described in the paper [Continuous control with deep reinforcement learning](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf). Deep Deterministic Policy Gradient (DDPG) is an algorithm which concurrently learns a Q-function and a policy. It uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy.
+This project implements an off-policy method called Multi-Agent Deep Deterministic Policy Gradient as described in the paper [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf). Deep Deterministic Policy Gradient (DDPG) is an algorithm which concurrently learns a Q-function and a policy. It uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy.
 
 Unfortunately, reinforcement learning is notoriously unstable when neural networks are used to represent the action values. Therefore we should use **two key** features to overcome with this and enable RL agents to converge, more reliably during training:
 
@@ -34,12 +34,28 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
     -  otherwise as the Q-functions values change at each step of training the value estimates can easily spiral out of control
     -  To use the fixed Q-Targets technique, you need a second set of parameters w- which you can initialize to w. 
 
-![Fixed Q-Targets](./img/Fixed_Q_Targets.png)
+But as shown in the paper [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
+>unfortunately, traditional reinforcement learning approaches such as Q-Learning or policy gradient are poorly suited to multi-agent environments.
 
-**Pyeudo Code for Deep Deterministic Policy Gradient (DDPG) algorithm**
-![Deep Deterministic Policy Gradient (DDPG) algorithm](./img/DDPG.png)
+One problem is, that 
+>each agent’s policy is changing as training progresses, and the environment becomes non-stationary from the perspective of any individual agent.
 
-This project implements a Policy Based method called [DDPG](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf).
+The authors propose a general-purpose multi-agent learning algorithm with the following goals:
+1. the policies which are learned use only local informations (their own observations)
+2. there is no need of a differentiable model of the environment dynamics as it would be the case for a model-based policy optimization which learns via back-propagation
+3. not only useable for cooperative interaction but also for competitive or a mixture of both
+
+The authors accomplish this 
+>by adopting the framework of centralized training with decentralized execution. Thus, we allow the policies to use extra information to ease training, so long as this information is not used at test time. It is unnatural to do this with Q-learning, as the Q function generally cannot contain different information at training and test time. Thus, we propose a simple extension of actor-critic policy gradient methods where the critic is augmented with extra information about the policies of other agents, while the actor only has access to local information. After training is completed, only the local actors are used at execution phase, acting in a decentralized manner and equally applicable in cooperative and competitive settings.
+
+The main idea behind the Multi-Agent DDPG conecpt is shown in the following picture:
+
+![MADDPG](./Part4_Project_Collaboration_and_Competition/img/MADDPG_concept.PNG)
+Image: From [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
+
+
+**Pseudo Code for Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm**
+![Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm](./img/MADDPG_algorithm.PNG)
 
 
 ## Training and Hyperparameter
@@ -81,19 +97,19 @@ TRAINING:
 
 The agent is able to receive an average reward (over 100 episodes) of at least +0.5 in only 72 episodes as shown in the following chart.  
 
-![Result](./results/DDPG_tennis_trained_performance.png)
+![Result](./results/MADDPG_72eps.png)
 
 ### Untrained agent performing random actions
 
-![Part4_Project_Collaboration_and_Competition](./img/Continuous_Control_random_action.gif)
+![Part4_Project_Collaboration_and_Competition](./img/MADDPG_tennis_random.gif)
 
 ### Trained agent performing appropriate actions - average score 0.5
 
-![Part4_Project_Collaboration_and_Competition](./img/Continuous_Control_trained_agent_action.gif)
+![Part4_Project_Collaboration_and_Competition](./img/MADDPG_tennis_score_0p5.gif)
 
 ### Trained agent performing appropriate actions - average score 2.5
 
-![Part4_Project_Collaboration_and_Competition](./img/Continuous_Control_trained_agent_action.gif)
+![Part4_Project_Collaboration_and_Competition](./img/MADDPG_tennis_score_2p5.gif)
 
 ### Future Ideas for improving the agent's performance
 
@@ -102,11 +118,11 @@ For the objective of this project, the model produced a satisfactory result. How
 One possible good improvement for the multi agent environments could be done by implementing the Twin Delayed DDPG (TD3) as proposed von OpenAI's [Spinning Up](https://spinningup.openai.com/en/latest/index.html) website. 
 
 >While DDPG can achieve great performance sometimes, it is frequently brittle with respect to hyperparameters and other kinds of tuning. A common failure mode for DDPG is that the learned Q-function begins to dramatically overestimate Q-values, which then leads to the policy breaking, because it exploits the errors in the Q-function. Twin Delayed DDPG (TD3) is an algorithm which addresses this issue by introducing three critical tricks:
-
+>
 >- Trick One: Clipped Double-Q Learning. TD3 learns two Q-functions instead of one (hence “twin”), and uses the smaller of the two Q-values to form the targets in the Bellman error loss functions.
-- Trick Two: “Delayed” Policy Updates. TD3 updates the policy (and target networks) less frequently than the Q-function. The paper recommends one policy update for every two Q-function updates.
-- Trick Three: Target Policy Smoothing. TD3 adds noise to the target action, to make it harder for the policy to exploit Q-function errors by smoothing out Q along changes in action.
-
+>- Trick Two: “Delayed” Policy Updates. TD3 updates the policy (and target networks) less frequently than the Q-function. The paper recommends one policy update for every two Q-function updates.
+>- Trick Three: Target Policy Smoothing. TD3 adds noise to the target action, to make it harder for the policy to exploit Q-function errors by smoothing out Q along changes in action.
+>
 >Together, these three tricks result in substantially improved performance over baseline DDPG.***
 
 Pseudocode:
@@ -116,23 +132,11 @@ Pseudocode:
 
 ## Literature
 
-[DDPG](https://arxiv.org/abs/1509.02971)
+[Continuous control with deep reinforcement learning - DDPG](https://arxiv.org/abs/1509.02971)
 
-[TRPO](https://arxiv.org/abs/1604.06778)
+[Deep Reinforcement Learning for Continuous Control - TRPO](https://arxiv.org/abs/1604.06778)
 
-[PPO](https://arxiv.org/pdf/1707.06347.pdf)
-
-[PPO@openai.com](https://blog.openai.com/openai-baselines-ppo/)
-
-[D4PG](https://openreview.net/forum?id=SyZipzbCb)
-
-[A3C](https://arxiv.org/pdf/1602.01783.pdf)
-
-
-    Lillicrap, T. P., Hunt, J. J., Pritzel, A., Heess, N., Erez, T., Tassa, Y., et al. Continuous control with deep reinforcement learning. arXiv.org, 2015.
-    Lowe, R., WU, Y., Tamar, A., Harb, J., Abbeel, P., and Mordatch, I. Multi- agent actor-critic for mixed cooperative-competitive environments. 2017.
-    Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O. Proximal Policy Optimization Algorithms. arXiv.org, 2017.
-
+[Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
 
 ## Contributing
 

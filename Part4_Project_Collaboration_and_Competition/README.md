@@ -24,7 +24,7 @@ Note that cells may depend on previous cells. The notebook explains clearly what
 
 The goal of this project is to design, train and evaluate two agents so that they can bounce a ball over a net as often as possible. If an agent hits the ball over the net, it receives a reward of +0.1. If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01. Thus, the goal of each agent is to keep the ball in play.
 
-Therefore a deep reinforcement algorithm has to be implemented. Here an angent with an Deep Deterministic Policy Gradient (DDPG) algorithm and several additional improvements for getting a more stabilized learning is implemented:
+Therefore a deep reinforcement algorithm has to be implemented. Here an multi agent concept with an Deep Deterministic Policy Gradient (DDPG) algorithm and several additional improvements for getting a more stabilized learning is implemented:
 
 -   Replay buffer
 -   Target Q network with soft target updates
@@ -69,7 +69,11 @@ See [Report.md](./Report.md) for more details.
 
 ## Literature
 
-[DDPG](./resources/305_20160229_Lillicrap_et_al_Continuous_control_with_DRL.pdf)
+[Continuous control with deep reinforcement learning - DDPG](https://arxiv.org/abs/1509.02971)
+
+[Deep Reinforcement Learning for Continuous Control - TRPO](https://arxiv.org/abs/1604.06778)
+
+[Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
 
 ## Contributing
 
