@@ -34,7 +34,7 @@ In this repository I will share the **source code** of all the projects of **[Ud
 
 ----  
 
-| [Getting Started for Part 4](./Part4_How_to_get_started)       | [![Part4P1](./Part4_Project_Collaboration_and_Competition/img/Collaboration_and_Competition_Tennis_trained.gif)](./Part4_Project_Collaboration_and_Competition/)<br>**Project 4:<br>Collaboration and Competition**<br>[Code](./Part4_Project_Collaboration_and_Competition/)       |        |
+| [Getting Started for Part 4](./Part4_How_to_get_started)       | [![Part4P1](./Part4_Project_Collaboration_and_Competition/img/MADDPG_tennis_score_0p5.gif)](./Part4_Project_Collaboration_and_Competition/)<br>**Project 4:<br>Collaboration and Competition**<br>[Code](./Part4_Project_Collaboration_and_Competition/)       |        |
 | :---:         |     :---:      |          :---: |
 
 ---  
