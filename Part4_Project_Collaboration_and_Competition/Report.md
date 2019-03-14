@@ -34,7 +34,7 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
     -  otherwise as the Q-functions values change at each step of training the value estimates can easily spiral out of control
     -  To use the fixed Q-Targets technique, you need a second set of parameters w- which you can initialize to w. 
 
-But as shown in the paper [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
+But as shown in the paper **[Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)**
 >unfortunately, traditional reinforcement learning approaches such as Q-Learning or policy gradient are poorly suited to multi-agent environments.
 
 One problem is, that 
@@ -50,7 +50,7 @@ The authors accomplish this
 
 The main idea behind the Multi-Agent DDPG conecpt is shown in the following picture:
 
-![MADDPG](./Part4_Project_Collaboration_and_Competition/img/MADDPG_concept.PNG)
+![MADDPG](./img/MADDPG_concept.PNG)
 Image: From [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
 
 
@@ -107,10 +107,6 @@ The agent is able to receive an average reward (over 100 episodes) of at least +
 
 ![Part4_Project_Collaboration_and_Competition](./img/MADDPG_tennis_score_0p5.gif)
 
-### Trained agent performing appropriate actions - average score 2.5
-
-![Part4_Project_Collaboration_and_Competition](./img/MADDPG_tennis_score_2p5.gif)
-
 ### Future Ideas for improving the agent's performance
 
 For the objective of this project, the model produced a satisfactory result. However, the agents are not stable or reliable on-goingly. The resuls vary considerably from episode to episode. Even worse, letting the agents continue learning, sometimes the scores drop to 0 again and never recover.
@@ -137,6 +133,8 @@ Pseudocode:
 [Deep Reinforcement Learning for Continuous Control - TRPO](https://arxiv.org/abs/1604.06778)
 
 [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
+
+[Twin Delayed DDPG](https://spinningup.openai.com/en/latest/index.html)
 
 ## Contributing
 
