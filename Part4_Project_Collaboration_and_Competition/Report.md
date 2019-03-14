@@ -99,7 +99,7 @@ TRAINING:
 
 The agent is able to receive an average reward (over 100 episodes) of at least +0.5 in only 72 episodes as shown in the following chart.  
 
-![Result](./results/MADDPG_72eps.png)
+![Result](./results/MADDPG_72eps.PNG)
 
 ### Untrained agent performing random actions
 
