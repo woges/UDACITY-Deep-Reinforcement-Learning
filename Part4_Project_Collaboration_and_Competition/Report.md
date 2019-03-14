@@ -16,7 +16,7 @@ Therefore a deep reinforcement algorithm has to be implemented. Here an multi ag
 
 ### Learning algorithm
 
-This project implements an off-policy method called Multi-Agent Deep Deterministic Policy Gradient as described in the paper [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf). Deep Deterministic Policy Gradient (DDPG) is an algorithm which concurrently learns a Q-function and a policy. It uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy.
+This project implements an off-policy method called Multi-Agent Deep Deterministic Policy Gradient as described in the paper [Multi-agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf). Deep Deterministic Policy Gradient (DDPG) is an algorithm which concurrently learns a Q-function and a policy. It uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy.
 
 Unfortunately, reinforcement learning is notoriously unstable when neural networks are used to represent the action values. Therefore we should use **two key** features to overcome with this and enable RL agents to converge, more reliably during training:
 
@@ -34,7 +34,9 @@ Unfortunately, reinforcement learning is notoriously unstable when neural networ
     -  otherwise as the Q-functions values change at each step of training the value estimates can easily spiral out of control
     -  To use the fixed Q-Targets technique, you need a second set of parameters w- which you can initialize to w. 
 
-But as shown in the paper **[Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)**
+#### Multi-Agent DDPG
+
+But as shown in the paper **[Multi-agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)**
 >unfortunately, traditional reinforcement learning approaches such as Q-Learning or policy gradient are poorly suited to multi-agent environments.
 
 One problem is, that 
@@ -50,8 +52,8 @@ The authors accomplish this
 
 The main idea behind the Multi-Agent DDPG conecpt is shown in the following picture:
 
-![MADDPG](./img/MADDPG_concept.PNG)
-Image: From [Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
+![MADDPG](./img/MADDPG_concept.png)
+Image: From [Multi-agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
 
 
 **Pseudo Code for Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm**
@@ -132,7 +134,7 @@ Pseudocode:
 
 [Deep Reinforcement Learning for Continuous Control - TRPO](https://arxiv.org/abs/1604.06778)
 
-[Multi- agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
+[Multi-agent actor-critic for mixed cooperative-competitive environments](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf)
 
 [Twin Delayed DDPG](https://spinningup.openai.com/en/latest/index.html)
 
